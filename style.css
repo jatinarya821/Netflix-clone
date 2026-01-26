@@ -41,7 +41,7 @@ body {
     z-index: 1;
 }
 
-.header .box {
+.header .overlay {
     background-color: black;
     height: 100%;
     opacity: 0.68;
@@ -238,36 +238,64 @@ img {
     background: radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.655) 80%, rgba(0, 0, 0, 0.1) 100%), black;
     clip-path: ellipse(99% 59% at 50% 100%);
     /* closer to base curve */
-    z-index: 2;
+    z-index: 0;
+    /* keep background curve behind content */
 }
 
 .cards {
+    bottom: 62px;
     /* horizontal carousel container */
     display: flex;
     gap: 42px;
-    padding: 0 16px;
+    padding: 24px 16px;
+    /* more vertical space for hover pop-out */
     flex-wrap: nowrap;
     overflow-x: auto;
+    /* keep programmatic horizontal scrolling */
+    overflow-y: visible;
+    /* allow hover to extend without clipping */
+    overscroll-behavior-x: contain;
+    /* prevent horizontal overscroll effects */
+    overscroll-behavior-y: auto;
+    /* allow page to scroll vertically over cards */
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    align-items: flex-start;
+    align-items: center;
+    /* center cards vertically within padded area */
     flex: 1 1 auto;
-    z-index: 3;
+    z-index: 10;
+    /* ensure above overlays and headings */
     position: relative;
     margin-top: -40px;
+    /* Hide scrollbar cross-browser while allowing scroll by buttons */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge legacy */
 }
 
 .card_style {
     width: 150px;
     height: 205px;
     min-width: 150px;
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    overflow: visible;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: box-shadow 0.3s;
     flex: 0 0 auto;
     scroll-snap-align: start;
+}
+
+/* Image inside card fills and scales without clipping */
+.card_style>img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Carousel layout: buttons as side panels and cards in between */
@@ -276,14 +304,17 @@ img {
     align-items: center;
     gap: 12px;
     width: 100%;
+    position: relative;
+    z-index: 9;
 }
 
 .carousel-btn {
-    background: rgba(0, 0, 0, 0.6);
+    bottom: 72px;
+    background: rgba(0, 0, 0, 0.55);
     color: #fff;
-    border: none;
-    width: 56px;
-    height: 140px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    width: 30px;
+    height: 120px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -293,20 +324,40 @@ img {
     flex: 0 0 auto;
     position: relative;
     z-index: 6;
+    opacity: 0.95;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Optional: subtle scrollbar styling */
+.carousel-btn:hover,
+.carousel-btn:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.carousel-btn:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.16);
+}
+
+/* Fade out and disable interaction when hidden/disabled */
+.carousel-btn[disabled] {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Hide scrollbar for WebKit browsers */
 .cards::-webkit-scrollbar {
-    height: 8px;
-}
-
-.cards::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .trending {
-    bottom: 55px;
+    bottom: 76px;
     z-index: 4;
     font-size: larger;
     padding-left: 55px;
@@ -316,6 +367,57 @@ img {
 }
 
 .card_style:hover {
-   transform: scale(1.1); /* zooms in */ box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* adds depth */ z-index: 10; /* ensures hovered card stays above others */
+    z-index: 10;
     cursor: pointer;
+}
+
+.card_style:hover>img {
+    transform: scale(1.08);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.message {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    padding: 32px 55px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    color: white;
+    min-height: 100px;
+    width: 200px;
+    background-color: #606a9fdb;
+    position: relative;
+    padding: 16px;
+    /* space inside the box */
+    z-index: 10;
+    text-align: center;
+    /* ensure it's above the header overlay */
+}
+
+/* Topic heading in box: tight spacing above paragraph */
+.box .topic {
+    display: block;
+    padding: 0;
+    margin-bottom: 6px;
+    /* small space before paragraph */
+}
+
+/* Paragraph in box: minimal top spacing */
+.box p {
+    margin-top: 0;
+    /* rely on topic's margin-bottom */
 }
