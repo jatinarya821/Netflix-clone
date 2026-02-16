@@ -18,7 +18,10 @@
         <nav>
             <img src="assets/images/logo.svg" alt="netflix">
             <div class="flex">
-                <button type="button" class="btn nav">English</button>
+                <select name="language" id="language-select-nav" class="btn nav" aria-label="Select language">
+                    <option value="en" selected>English</option>
+                    <option value="hi">Hindi</option>
+                </select>
 
 
 
@@ -227,9 +230,9 @@
         </div>
 
         <div class="text">
-<span>Ready to watch? Enter your email to create or restart your membership.</span>
+            <span>Ready to watch? Enter your email to create or restart your membership.</span>
         </div>
-         <div class="search_bar" id="bar">
+        <div class="search_bar" id="bar">
             <input type="name" placeholder="Email address" class="btn ">
             <div class="wrapper">
                 <button>
@@ -237,7 +240,45 @@
                     <img src="assets/images/icon.svg" alt="arrow" class="icon">
                 </button>
             </div>
+        </div>
 
+        <div class="footer">
+            <p>Question? Call <a href="tel:2215145214">2215145214</a></p>
+            <div class="links">
+
+                <a href=""> FAQ</a>
+                <a href="">Help Centre</a>
+                <a href=""> Account</a>
+                <a href="">Media Centre</a>
+                <a href="">Investor Relations</a>
+                <a href=""> Jobs</a>
+                <a href=""> Ways to Watch</a>
+                <a href=""> Terms of Use</a>
+                <a href=""> Privacy</a>
+                <a href=""> Cookie Preferences</a>
+                <a href=""> Corporate Information</a>
+                <a href=""> Contact Us</a>
+                <a href=""> Speed Test</a>
+                <a href=""> Legal Notices</a>
+                <a href=""> Only on Netflix</a>
+            </div>
+            <div class="footer-language">
+                <select name="language" id="language-select-footer" class="btn nav" aria-label="Select language">
+                    <option value="en" selected>English</option>
+                    <option value="hi">Hindi</option>
+                </select>
+                <p>Netflix India</p>
+                <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="">Learn more</a>.</p>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                ['language-select-nav', 'language-select-footer'].forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.value = 'en';
+                });
+            });
+        </script>
 
 </body>
 

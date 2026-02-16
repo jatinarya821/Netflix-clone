@@ -151,6 +151,21 @@ img {
     padding-left: 42px;
 }
 
+select.btn.nav {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    min-width: 120px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 19px 1px 39px;
+    text-align: left;
+    text-indent: 0;
+    color: #ffffff;
+    background-color: rgba(10, 4, 4, 0.372);
+}
+
 .btn.red {
     cursor: pointer;
     justify-content: center;
@@ -491,12 +506,60 @@ span[data-target] h2 {
     border-radius: 6px;
     background-color: #1b1b1b;
 }
-.text{
+
+.text {
     color: #e9e7f6;
     font-size: 15px;
     line-height: 1.5;
     text-align: center;
 }
-#bar{
-    
+
+.footer {
+    color: white;
+    margin: 40px 100px;
+    position: static;
+    padding: 10px;
+}
+
+.footer>p {
+    position: relative;
+    bottom: 20px;
+    padding: 26px;
+}
+
+.footer>.links {
+    font-size: 12px;
+    color: #e9e7f6;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-template-rows: repeat(4, auto);
+    row-gap: 16px;
+    column-gap: 10px;
+}
+
+.footer-language {
+    margin-top: 18px;
+}
+
+.footer a,
+.footer a:link,
+.footer a:visited,
+.footer a:hover,
+.footer a:active {
+    color: #928f8fe5;
+}
+
+.footer-language>p {
+    color: #787770;
+    padding: 9px;
+    font-size: 12px;
+}
+
+/* Restore native-like blue for the Learn more link in the footer-language block, all states */
+.footer-language a,
+.footer-language a:link,
+.footer-language a:visited,
+.footer-language a:hover,
+.footer-language a:active {
+    color: #0000ee;
 }
