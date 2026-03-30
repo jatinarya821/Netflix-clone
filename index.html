@@ -16,7 +16,7 @@
     <div class="header">
 
         <nav>
-            <img src="assets/images/logo.svg" alt="netflix">
+            <img src="assets/images/logo.svg" alt="netflix" class="logo">
             <div class="flex">
                 <select name="language" id="language-select-nav" class="btn nav" aria-label="Select language">
                     <option value="en" selected>English</option>
@@ -35,10 +35,10 @@
             <span>Ready to watch? Enter your email to create or restart your membership.</span>
         </div>
         <div class="search_bar">
-            <input type="name" placeholder="Email address" class="btn ">
+            <input type="email" placeholder="Email address" class="btn" aria-label="Email address">
             <div class="wrapper">
-                <button>
-                    <input type="submit" value="Get Started  " class="btn red submit">
+                <button type="button" class="cta-btn">
+                    <span>Get Started</span>
                     <img src="assets/images/icon.svg" alt="arrow" class="icon">
                 </button>
             </div>
@@ -49,6 +49,9 @@
         <div class="curve_container">
 
         </div>
+
+    </div>
+
         <div class="trending">
             <h5>Trending Now</h5>
         </div>
@@ -233,10 +236,10 @@
             <span>Ready to watch? Enter your email to create or restart your membership.</span>
         </div>
         <div class="search_bar" id="bar">
-            <input type="name" placeholder="Email address" class="btn ">
+            <input type="email" placeholder="Email address" class="btn" aria-label="Email address">
             <div class="wrapper">
-                <button>
-                    <input type="submit" value="Get Started  " class="btn red submit">
+                <button type="button" class="cta-btn">
+                    <span>Get Started</span>
                     <img src="assets/images/icon.svg" alt="arrow" class="icon">
                 </button>
             </div>
